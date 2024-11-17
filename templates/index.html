@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #444;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            font-size: 14px;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Documentation</h1>
+
+    <section>
+        <h2>Overview</h2>
+        <p>
+            This API allows you to analyze images using Azure's Computer Vision OCR service. You can extract text from images by sending a properly formatted request to the API.
+        </p>
+    </section>
+
+    <section>
+        <h2>API Endpoint</h2>
+        <p>
+            The API is accessible at: <code>http://localhost:3000/api/v1/analysis/</code>
+        </p>
+    </section>
+
+    <section>
+        <h2>Request</h2>
+        <p>
+            To analyze an image, send a POST request with a JSON object containing a single field <code>"uri"</code>, which should point to the image URL to be analyzed.
+        </p>
+        <pre>
+            <code>
+{
+    "uri": "http://jeroen.github.io/images/testocr.png"
+}
+            </code>
+        </pre>
+    </section>
+
+    <section>
+        <h2>Response</h2>
+        <p>
+            The API will return a JSON object with the extracted text or an error message. Example response:
+        </p>
+        <pre>
+            <code>
+{
+    "text": "Extracted text from the image."
+}
+            </code>
+        </pre>
+    </section>
+
+    <section>
+        <h2>Error Handling</h2>
+        <p>
+            In case of an error, the API will return an error message in JSON format. Example:
+        </p>
+        <pre>
+            <code>
+{
+    "error": "The provided URI is not a valid URL."
+}
+            </code>
+        </pre>
+        <p>
+            Common errors include:
+            <ul>
+                <li><code>400</code>: Missing or invalid <code>uri</code> field in the request.</li>
+                <li><code>500</code>: Internal server error during processing.</li>
+                <li><code>408</code>: OCR process took too long to complete.</li>
+            </ul>
+        </p>
+    </section>
+</body>
+</html>
